@@ -1,28 +1,23 @@
-
 class Persona {
-    private String id;
-    private int destinazione;
+    private int id;
+    private int pianoDestinazione;
 
-
-    public Persona(String id, int destinazione) {
+    public Persona(int id, int pianoDestinazione) {
         this.id = id;
-        this.destinazione = destinazione;
+        this.pianoDestinazione = pianoDestinazione;
     }
 
-
-    public void Saliascensore(ascensore a) {
-       
+    public int getId() {
+        return id;
     }
 
-
-    public void Scendiascensore(ascensore a) {
-       
-        }
+    public int getPianoDestinazione() {
+        return pianoDestinazione;
     }
 
-
-public String toString(){
-    return String id + int destinazione;
+    @Override
+    public String toString() {
+        return "Persona " + id + " -> Piano " + pianoDestinazione;
+    }
 }
-
 
