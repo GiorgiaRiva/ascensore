@@ -17,7 +17,6 @@ class Persona {
 
     @Override
     public String toString() {
-        return "Persona " + id + " -> Piano " + pianoDestinazione;
+        return "Persona " + id + " va al Piano " + pianoDestinazione;
     }
 }
-

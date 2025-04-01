@@ -1,10 +1,12 @@
+import java.util.ArrayList;
+
 class Ascensore {
     private int pianoCorrente;
     private int capienzaMassima;
     private ArrayList<Persona> personeDentro;
     private boolean porteAperte;
     private int direzione;
-   
+
     public Ascensore(int capienzaMassima) {
         this.pianoCorrente = 0;
         this.capienzaMassima = capienzaMassima;
@@ -32,10 +34,23 @@ class Ascensore {
     }
 
     public void decidiDirezione(Piano[] piani) {
-        if (personeDentro.isEmpty() && !piani[pianoCorrente].haPersoneInAttesa()) {
+        boolean ciSonoPersoneDentro = !personeDentro.isEmpty();
+        boolean ciSonoPersoneInAttesa = piani[pianoCorrente] != null && piani[pianoCorrente].haPersoneInAttesa();
+
+        if (!ciSonoPersoneDentro && !ciSonoPersoneInAttesa) {
             direzione = 0;
+        } else if (ciSonoPersoneDentro) {
+            if (personeDentro.stream().anyMatch(p -> p.getPianoDestinazione() > pianoCorrente)) {
+                direzione = 1;
+            } else {
+                direzione = -1;
+            }
         } else {
-            direzione = personeDentro.stream().anyMatch(p -> p.getPianoDestinazione() > pianoCorrente) ? 1 : -1;
+            if (pianoCorrente < 9) {
+                direzione = 1;
+            } else {
+                direzione = -1;
+            }
         }
     }
 
